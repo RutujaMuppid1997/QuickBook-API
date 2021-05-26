@@ -52,10 +52,10 @@ app.get('/', function (req, res) {
  */
 app.get('/authUri', urlencodedParser, function (req, res) {
   oauthClient = new OAuthClient({
-    clientId: req.query.json.clientId,
-    clientSecret: req.query.json.clientSecret,
-    environment: req.query.json.environment,
-    redirectUri: req.query.json.redirectUri,
+    clientId: 'ABRRAzPpyYinuIzii4dX0T9b8bzUe0ZMlUeccaMB7okfwA2DbF',
+    clientSecret: 'EjFWeYOwPxtci40AIUrXh5JttO7olt1hIrmTgbUb',
+    environment: 'sandbox',
+    redirectUri: 'http://localhost:8000/callback',
   });
 
   const authUri = oauthClient.authorizeUri({
