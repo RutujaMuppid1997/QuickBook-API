@@ -62,7 +62,10 @@ app.get('/authUri', urlencodedParser, function (req, res) {
     scope: [OAuthClient.scopes.Accounting],
     state: 'intuit-test',
   });
-  res.send(authUri);
+  let response ={
+    url:authUri
+  }
+  res.send(response);
 });
 
 /**
@@ -72,20 +75,25 @@ app.get('/callback', function (req, res) {
   oauthClient
     .createToken(req.url)
     .then(function (authResponse) {
-      oauth2_token_json = JSON.stringify(authResponse.getJson(), null, 2);
+      // oauth2_token_json = JSON.stringify(authResponse.getJson(), null, 2);
+      oauth2_token_json =authResponse;
+      res.send('Sucess');
     })
     .catch(function (e) {
       console.error(e);
-    });
+      res.send(e);
 
-  res.send('');
+    });
 });
 
 /**
  * Display the token : CAUTION : JUST for sample purposes
  */
 app.get('/retrieveToken', function (req, res) {
-  res.send(oauth2_token_json);
+  let response = {
+    tokenDetails:oauth2_token_json
+  }
+  res.send(response);
 });
 
 /**
@@ -97,7 +105,7 @@ app.get('/refreshAccessToken', function (req, res) {
     .then(function (authResponse) {
       console.log(`The Refresh Token is  ${JSON.stringify(authResponse.getJson())}`);
       oauth2_token_json = JSON.stringify(authResponse.getJson(), null, 2);
-      res.send(oauth2_token_json);
+      res.send(authResponse);
     })
     .catch(function (e) {
       console.error(e);
