@@ -86,6 +86,8 @@ app.get('/callback', function (req, res) {
     });
 });
 
+
+
 /**
  * Display the token : CAUTION : JUST for sample purposes
  */
@@ -95,6 +97,36 @@ app.get('/retrieveToken', function (req, res) {
   }
   res.send(response);
 });
+
+/**
+ * check if token is created
+ */
+ app.get('/checkCallBack', function (req, res) {
+   let response;
+   if(oauth2_token_json)
+   {
+     response = true;
+   }else{
+    response = false;
+   }
+   res.send(response)
+});
+
+
+
+/**
+ * Display the token : CAUTION : JUST for sample purposes
+ */
+app.get('/retrieveToken', function (req, res) {
+  let response = {
+    tokenDetails:oauth2_token_json
+  }
+  res.send(response);
+});
+
+
+
+
 
 /**
  * Refresh the access-token
