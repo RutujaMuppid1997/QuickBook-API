@@ -77,7 +77,7 @@ app.get('/callback', function (req, res) {
     .then(function (authResponse) {
       // oauth2_token_json = JSON.stringify(authResponse.getJson(), null, 2);
       oauth2_token_json =authResponse;
-      res.send('Sucess');
+      res.send('Success');
     })
     .catch(function (e) {
       console.error(e);
